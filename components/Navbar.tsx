@@ -39,6 +39,9 @@ const links=document.querySelector('.links')
 links?.classList.toggle('hidden')
 }
 
+
+
+
   return (   
     <nav className=" bg-white border-[1px] border-[#dbdbdb] ">
       <div className="max-w-[1124px] m-auto p-3 py-6 flex items-center justify-between flex-wrap">
@@ -49,7 +52,7 @@ links?.classList.toggle('hidden')
         <ul className="hidden flex-col md:flex-row links md:flex items-center gap-x-8  w-full md:w-fit links transition-all">
           <li className="mt-6 md:mt-0">
             <Link
-              className="flex items-center text-2xl gap-x-2 font-semibold text-[#71717A]"
+              className={`flex items-center text-2xl gap-x-2 font-semibold text-[${router.asPath==='/products'?'black':"#71717A"}] transition-all `}
               href="/products"
             >
               <HomeIcon className="w-8 h-8" />
@@ -60,7 +63,7 @@ links?.classList.toggle('hidden')
         <>
           <li className="mt-6 md:mt-0">
             <Link
-              className="text-[#71717A]  flex items-center text-2xl gap-x-2 font-semibold"
+              className={`text-[${router.asPath==='/wishlist'?'black':"#71717A"}]  flex items-center text-2xl gap-x-2 font-semibold`}
               href="/wishlist"
             >
               <HeartIcon className="w-8 h-8" />
@@ -81,7 +84,7 @@ links?.classList.toggle('hidden')
           </li>
           <li className="mt-6 md:mt-0">
             <Link
-              className="text-[#71717A] flex items-center text-2xl gap-x-2 font-semibold"
+              className={`text-[${router.asPath==='/orders'?'black':"#71717A"}]  flex items-center text-2xl gap-x-2 font-semibold`}
               href="/orders"
             >
               <ArchiveBoxIcon className="w-8 h-8" />
@@ -94,14 +97,14 @@ links?.classList.toggle('hidden')
             {currentUser ? (
               <button
                 onClick={handleLogout}
-                className="bg-black text-white text-semibold  text-2xl px-10 py-3 rounded-md"
+                className="bg-[#001134] text-white text-semibold  text-2xl px-10 py-3 rounded-md"
               >
                 Logout
               </button>
             ) : (
               <button
                 onClick={()=>router.push('/login')}
-                className="bg-black text-white text-semibold  text-2xl px-10 py-3 rounded-md"
+                className="bg-[#001134] text-white text-semibold  text-2xl px-10 py-3 rounded-md"
               >
                 Login
               </button>

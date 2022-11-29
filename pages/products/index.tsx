@@ -12,12 +12,20 @@ type Props = {
 
 function Home({ data }: Props) {
   const [query, setQuery] = useState<string>("");
+  const [rangeValues, setRangeValue] = useState<number>(121);
 
   const SearchResults = () => {
     return data.filter((item) =>
       item.name.toLowerCase().includes(query.toLowerCase())
     );
   };
+
+  const filterByPrice = () => {
+    return data.filter((item) => parseInt(item.price) <= rangeValues);
+  };
+
+  console.log(filterByPrice());
+  // console.log(rangeValues);
 
   return (
     <>
@@ -37,8 +45,27 @@ function Home({ data }: Props) {
               value={query}
             />
           </div>
+
+        <div className="w-full md:max-w-[40%]">
+        <label
+            htmlFor="minmax-range"
+            className="block mb-8 text-3xl font-medium text-gray-900 dark:text-white "
+          >
+            Price (${rangeValues} to $700) 
+          </label>
+          <input
+            id="minmax-range"
+            type="range"
+            min="121"
+            max="700"
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setRangeValue(parseInt(e.currentTarget.value))}
+            value={rangeValues}
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 mb-14"
+          />
+
+        </div>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7">
-            {SearchResults().map((item) => (
+            {filterByPrice().map((item) => (
               <Card key={item.id} item={item} />
             ))}
           </div>
@@ -46,13 +73,13 @@ function Home({ data }: Props) {
       </main>
       <CartModal />
       <Toaster
-      position="top-right"
-      toastOptions={{
-        duration:1500,
-        style:{
-          fontSize:14
-        }
-      }}
+        position="top-right"
+        toastOptions={{
+          duration: 1500,
+          style: {
+            fontSize: 14,
+          },
+        }}
       />
     </>
   );
