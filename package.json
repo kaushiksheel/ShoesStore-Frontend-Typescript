@@ -1,0 +1,38 @@
+{
+  "name": "ecommerce-store-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.13",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "@types/react-lottie": "^1.2.6",
+    "@types/react-scrollbar": "^0.5.3",
+    "axios": "^1.2.0",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.5",
+    "framer-motion": "^7.6.12",
+    "jwt-decode": "^3.1.2",
+    "next": "13.0.5",
+    "react": "18.2.0",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-lottie": "^1.2.3",
+    "react-scrollbar": "^0.5.6",
+    "react-spinners": "^0.13.6",
+    "typescript": "4.9.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
+  }
+}
