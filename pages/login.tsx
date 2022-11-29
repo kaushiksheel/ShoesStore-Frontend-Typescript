@@ -7,23 +7,32 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
 import { AuthContextType } from "../types/AuthContextType";
 import { UserType } from "../types/UserType";
+import { Spinner } from "../components/Spinner";
+import { AxiosError } from "axios";
 
 function Login() {
   const { setCurrentUser } = useContext<AuthContextType>(AuthContext);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       const { data } = await login(email, password);
+      setLoading(false);
       const decodedToken = jwtDecode(data);
       setCurrentUser(decodedToken as UserType);
       localStorage.setItem("token", data);
       // router.push("/products");
-    if(typeof window!=='undefined') return window.location ='/products' as any
-    } catch (error: any) {
-      toast.error(error?.response?.data);
+      if (typeof window !== "undefined")
+        return (window.location = "/products" as any);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setLoading(false);
+        toast.error(error?.response?.data);
+      }
     }
   };
 
@@ -75,7 +84,7 @@ function Login() {
               onClick={handleLogin}
               className="mt-8 text-[1.7rem] bg-[#18181B] w-full p-[1.8rem] text-white rounded-[1.3rem]"
             >
-              Sign in
+              {loading ? <Spinner size={20} /> : "Sign in"}
             </button>
           </div>
         </div>
