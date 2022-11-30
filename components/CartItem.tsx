@@ -5,9 +5,9 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { CartContextType } from "../types/CartContextType";
 import { Product } from "../types/Product";
+import {motion} from 'framer-motion';
 
-const IMAGE_LINK =
-  "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_1050,h_1050/global/372981/01/sv01/fnd/IND/fmt/png/Puma-Perforated-Low-Men's--IDP-Shoes";
+
 
 type Props = {
   item: Product;
@@ -20,7 +20,11 @@ export const CartItem = ({ item }: Props) => {
     handleItemQuantityDecrement,
   } = useContext<CartContextType>(CartContext);
   return (
-    <div className="body mt-10">
+    <motion.div
+    initial={{ opacity: 0 ,scale:0.6}}
+      animate={{ opacity: 1 ,scale:1}}
+    
+    className=" mt-10">
       <div className="item flex items-center">
         <div className="left flex items-center gap-x-4 flex-1">
           <Image
@@ -60,6 +64,6 @@ export const CartItem = ({ item }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -4,7 +4,11 @@ import { getProducts } from "../../api/request";
 import { Card } from "../../components/Card";
 import { CartModal } from "../../components/CartModal";
 import { Navbar } from "../../components/Navbar";
+import { ProductSearch } from "../../components/ProductSearch";
+import { RangeInput } from "../../components/RangeInput";
 import { Product } from "../../types/Product";
+import {motion} from 'framer-motion';
+import { container_variant } from "../../helpers/framer-motion";
 
 type Props = {
   data: Product[];
@@ -12,7 +16,7 @@ type Props = {
 
 function Home({ data }: Props) {
   const [query, setQuery] = useState<string>("");
-  const [rangeValues, setRangeValue] = useState<number>(121);
+  const [rangeValue, setRangeValue] = useState<number>(122);
 
   const SearchResults = () => {
     return data.filter((item) =>
@@ -21,11 +25,11 @@ function Home({ data }: Props) {
   };
 
   const filterByPrice = () => {
-    return data.filter((item) => parseInt(item.price) <= rangeValues);
+    return data.filter((item) => parseInt(item.price) <= rangeValue);
   };
 
-  console.log(filterByPrice());
-  // console.log(rangeValues);
+
+ 
 
   return (
     <>
@@ -34,41 +38,20 @@ function Home({ data }: Props) {
       </header>
       <main>
         <section className="max-w-[1124px] m-auto p-3">
-          <div className=" w-full md:max-w-[50%]">
-            <input
-              type="text"
-              className="bg-[#e9e9e9] w-full h-[5rem] rounded-lg text-2xl p-4  mb-8"
-              placeholder="search by name"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setQuery(e.currentTarget.value)
-              }
-              value={query}
-            />
-          </div>
-
-        <div className="w-full md:max-w-[40%]">
-        <label
-            htmlFor="minmax-range"
-            className="block mb-8 text-3xl font-medium text-gray-900 dark:text-white "
-          >
-            Price (${rangeValues} to $700) 
-          </label>
-          <input
-            id="minmax-range"
-            type="range"
-            min="121"
-            max="700"
-            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setRangeValue(parseInt(e.currentTarget.value))}
-            value={rangeValues}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 mb-14"
-          />
-
-        </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7">
-            {filterByPrice().map((item) => (
+          <ProductSearch setQuery={setQuery} query={query} />
+          <RangeInput rangeValue={rangeValue} setRangeValue={setRangeValue} />
+          <motion.div
+           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7"
+           variants={container_variant}
+           initial="hidden"
+    animate="visible"
+           >
+            {rangeValue > 122 &&
+              filterByPrice().map((item) => <Card key={item.id} item={item} />)}
+            {SearchResults().map((item) => (
               <Card key={item.id} item={item} />
             ))}
-          </div>
+          </motion.div>
         </section>
       </main>
       <CartModal />

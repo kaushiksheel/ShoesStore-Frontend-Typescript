@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
 import { AuthContextType } from "../types/AuthContextType";
 import { Product } from "../types/Product";
-import orders from "../pages/orders";
+import {motion} from 'framer-motion'
 
 export const CartModal = () => {
   const router = useRouter();
@@ -35,6 +35,7 @@ export const CartModal = () => {
   };
 
   const handleCheckout = async () => {
+   
     const { data } = await checkout(cartItems, currentUser?.email as string);
     if (data) {
       router.push(data.url);
@@ -44,6 +45,11 @@ export const CartModal = () => {
     }
   };
 
+
+
+
+
+  
   const prices = cartItems.map((item) => parseInt(item.price) * item.quantity);
   const totalPrice = prices.reduce((a, b) => {
     return a + b;
@@ -54,7 +60,7 @@ export const CartModal = () => {
       id="cartModal"
       className="cart-modal  fixed top-0 w-[100vw] h-[100vh] bg-[rgba(0,0,0,.7)] z-50 "
     >
-      <div className="card-modal-content  group fixed cart  right-0 bg-white w-[42rem] h-[100vh] p-7">
+      <div className="card-modal-content  group fixed cart  right-0 bg-white w-[42rem] h-[100vh] p-7 ">
         <div className="header flex items-center justify-between mb-2">
           <p className="text-3xl font-bold">Shopping Cart</p>
           <div
@@ -64,7 +70,7 @@ export const CartModal = () => {
             <XMarkIcon className="w-11 h-11 cursor-pointer " />
           </div>
         </div>
-        <div className="cartitems  h-[35rem] overflow-y-auto">
+        <div className="cartitems  h-[35rem] overflow-y-auto overflow-x-hidden">
           {cartItems.length > 0 ? (
             cartItems?.map((item) => (
               <CartItem key={item.id || item._id} item={item} />
@@ -87,19 +93,22 @@ export const CartModal = () => {
               <p className="font-bold">${totalPrice}.00</p>
             </div>
           </div>
-          <div className="mt-6" onClick={handleCheckout}>
-            <a
+          <div className="mt-6">
+            <motion.button
+            whileTap={{ scale: 0.8 }} 
+             onClick={handleCheckout}
               className="inline-block w-full bg-[#18181B] text-white text-2xl text-center p-8 font-bold rounded-lg hover:bg-[#282828]"
-              href="#!"
+            disabled={cartItems.length<1}
             >
               Checkout
-            </a>
-            <button
+            </motion.button>
+            <motion.button
+            whileTap={{ scale: 0.8 }} 
               onClick={handleSidebar}
               className="w-full bg-white text-black text-2xl text-center p-8 font-bold rounded-lg mt-5 border-2 border-[#D4D4D8] hover:bg-[#f3f3f3]"
             >
               Continue Shopping
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

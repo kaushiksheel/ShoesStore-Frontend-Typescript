@@ -3,12 +3,10 @@ import {
   HomeIcon,
   ShoppingCartIcon,
   HeartIcon,
-  ArchiveBoxIcon,
 } from "@heroicons/react/24/solid";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { AuthContext } from "../context/AuthContext";
 import { AuthContextType } from "../types/AuthContextType";
-import { UserType } from "../types/UserType";
 import { useRouter } from "next/router";
 import { CartContext } from "../context/CartContext";
 import { CartContextType } from "../types/CartContextType";
@@ -81,15 +79,6 @@ links?.classList.toggle('hidden')
             {cartItems.length>0&&
             <span className="absolute -top-4 -right-3 bg-red-400 text-lg rounded-full w-[20px] h-[20px] text-white grid place-items-center">{cartItems.length}</span>
             }
-          </li>
-          <li className="mt-6 md:mt-0">
-            <Link
-              className={`text-[${router.asPath==='/orders'?'black':"#71717A"}]  flex items-center text-2xl gap-x-2 font-semibold`}
-              href="/orders"
-            >
-              <ArchiveBoxIcon className="w-8 h-8" />
-              Orders
-            </Link>
           </li>
         </>
         }

@@ -6,7 +6,7 @@ import { getProductById, getProducts } from "../../api/request";
 import { CartContext } from "../../context/CartContext";
 import { CartContextType } from "../../types/CartContextType";
 import { Product } from "../../types/Product";
-
+import {motion} from 'framer-motion'
 type Props = {
   data: Product;
 };
@@ -37,20 +37,21 @@ const Product = ({ data }: Props) => {
               ${data?.price}
             </p>
             <div className="flex flex-col md:flex-row gap-x-5 md:gap-y-6 mt-5 items-center ">
-              <button onClick={()=>handleAddCart(data)} className=" w-fit bg-[#18181B] text-white text-2xl text-center py-8 font-bold rounded-lg hover:bg-[#282828] px-11">
+              <motion.button        whileTap={{ scale: 0.8 }}  onClick={()=>handleAddCart(data)} className=" w-fit bg-[#18181B] text-white text-2xl text-center py-8 font-bold rounded-lg hover:bg-[#282828] px-11">
                 Add to cart
-              </button>
+              </motion.button>
              
             </div>
           </div>
         </div>
       </div>
-      <div
+      <motion.div
+             whileTap={{ scale: 0.8 }} 
         onClick={() => router.push("/products")}
-        className="cursor-pointer absolute top-5 right-5 flex items-center text-3xl gap-x-5 bg-gray-200 px-6 py-3 rounded-lg"
+        className="cursor-pointer absolute top-5 right-5 bg-black w-[36px] h-[36px] rounded-full grid place-items-center"
       >
-        <ArrowLeftIcon className="w-8 h-8" /> Back
-      </div>
+        <ArrowLeftIcon className="w-7 h-7" color="white"/>
+      </motion.div>
     </>
   );
 };

@@ -40,7 +40,11 @@ input {
   transition: all 0.4s ease-in-out;
 }
 
-.cart-modal.active,
-.card-modal-content.active {
+
+.card-modal-content.active,.cart-modal.active {
   right: 0%;
+}
+
+:disabled{
+  background-color:rgb(68, 68, 68);
 }

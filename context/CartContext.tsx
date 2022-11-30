@@ -10,7 +10,6 @@ import {
   addToWishlist,
   getCartItems,
   getWishlistItems,
-  increaseCartQuantity,
   removeCartItems,
   removeFromWishlist,
 } from "../api/request";
@@ -68,12 +67,8 @@ export const CartContextProvider = ({ children }: CartContextProvider) => {
     setCartItems(removedCartItem);
   };
 
-  const handleItemQuantityIncrement = async (itemName: string) => {
-    // try {
-    //   await increaseCartQuantity( item?.quantity+1, itemName);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  const handleItemQuantityIncrement =  (itemName: string) => {
+  
     setCartItems((cartItems) =>
       cartItems.map((item) =>
         item.name === itemName
@@ -82,7 +77,7 @@ export const CartContextProvider = ({ children }: CartContextProvider) => {
       )
     );
   };
-  const handleItemQuantityDecrement = async (itemName: string) => {
+  const handleItemQuantityDecrement = (itemName: string) => {
     setCartItems((cartItems) =>
       cartItems.map((item) =>
         item.name === itemName
@@ -122,7 +117,7 @@ export const CartContextProvider = ({ children }: CartContextProvider) => {
       handleAddToWishlist(item);
     } else {
       handleRemoveFromWishlist(item.name);
-      toast.success("removed from wishlist");
+      toast.error("removed from wishlist");
     }
   };
 

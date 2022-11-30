@@ -1,34 +1,31 @@
 import axios from "axios";
 import { Product } from "../types/Product";
 
-const SHOE_API_ENDPOINT = "https://shoe-product-api-production.up.railway.app";
+const SHOE_API_BASE_URL = "https://shoe-product-api-production.up.railway.app";
 
-const BACKEND_BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "http://localhost:4000/api";
+
+const headers = {
+  headers: {
+    "x-auth-token":
+      typeof window !== "undefined" && localStorage.getItem("token"),
+  },
+};
 
 const login = (email: string, password: string) =>
-  axios.post(`${BACKEND_BASE_URL}/login`, { email, password });
+  axios.post(`${BASE_URL}/login`, { email, password });
 
 const signup = (fullname: string, email: string, password: string) =>
-  axios.post(`${BACKEND_BASE_URL}/signup`, { fullname, email, password });
+  axios.post(`${BASE_URL}/signup`, { fullname, email, password });
 
-const getProducts = () => axios.get(`${SHOE_API_ENDPOINT}/shoes`);
+const getProducts = () => axios.get(`${SHOE_API_BASE_URL}/shoes`);
 const getProductById = (id: string) =>
-  axios.get(`${SHOE_API_ENDPOINT}/shoes/${id}`);
+  axios.get(`${SHOE_API_BASE_URL}/shoes/${id}`);
 
 const getCartItems = () =>
-  axios.get(`${BACKEND_BASE_URL}/get-cart-item`, {
-    headers: {
-      "x-auth-token":
-        typeof window !== "undefined" && localStorage.getItem("token"),
-    },
-  });
+  axios.get(`${BASE_URL}/get-cart-item`, headers);
 const getWishlistItems = () =>
-  axios.get(`${BACKEND_BASE_URL}/get-wishlist-item`, {
-    headers: {
-      "x-auth-token":
-        typeof window !== "undefined" && localStorage.getItem("token"),
-    },
-  });
+  axios.get(`${BASE_URL}/get-wishlist-item`, headers);
 
 const addToCart = (
   name: string,
@@ -38,93 +35,40 @@ const addToCart = (
   quantity: number
 ) =>
   axios.post(
-    `${BACKEND_BASE_URL}/add-to-cart`,
+    `${BASE_URL}/add-to-cart`,
     { name, image, desc, price, quantity },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
+    headers
   );
 const addToWishlist = (
   name: string,
   image: string,
   desc: string,
   price: string,
-  rating:number
+  rating: number
 ) =>
   axios.post(
-    `${BACKEND_BASE_URL}/add-to-wishlist`,
-    { name, image, desc, price,rating },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
+    `${BASE_URL}/add-to-wishlist`,
+    { name, image, desc, price, rating },
+    headers
   );
-const removeFromWishlist = (
- name:string
-) =>
-  axios.post(
-    `${BACKEND_BASE_URL}/remove-wishlist-item`,
-    { name},
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
-  );
+const removeFromWishlist = (name: string) =>
+  axios.post(`${BASE_URL}/remove-wishlist-item`, { name }, headers);
 
 const removeCartItems = (itemName: string) =>
-  axios.post(
-    `${BACKEND_BASE_URL}/remove-cart-item`,
-    { itemName },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
-  );
+  axios.post(`${BASE_URL}/remove-cart-item`, { itemName }, headers);
 
 const increaseCartQuantity = (quantity: number, name: string) =>
   axios.put(
-    `${BACKEND_BASE_URL}/increase-cart-quantity`,
+    `${BASE_URL}/increase-cart-quantity`,
     { quantity, name },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
+    headers
   );
 
 const checkout = (items: Product[], email: string) =>
-  axios.post(
-    `${BACKEND_BASE_URL}/checkout`,
-    { email, items },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
-  );
+  axios.post(`${BASE_URL}/checkout`, { email, items }, headers);
 
 const order = (name: string, image: string, price: number) =>
-  axios.post(
-    `${BACKEND_BASE_URL}/order`,
-    { name, image, price },
-    {
-      headers: {
-        "x-auth-token":
-          typeof window !== "undefined" && localStorage.getItem("token"),
-      },
-    }
-  );
+  axios.post(`${BASE_URL}/order`, { name, image, price }, headers);
 
 export {
   getProducts,
@@ -139,5 +83,5 @@ export {
   order,
   addToWishlist,
   getWishlistItems,
-  removeFromWishlist
+  removeFromWishlist,
 };
