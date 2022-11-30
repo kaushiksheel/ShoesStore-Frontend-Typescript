@@ -36,7 +36,7 @@ function Signup() {
   return (
     <>
       <div className="w-[100vw] min-h-[100vh] bg-[#FAFAFA] grid place-content-center">
-        <div className="bg-white p-[3rem] rounded-[.75rem] w-[428px] md:w-[528px] shadow-lg">
+        <div className="bg-white p-[3rem] rounded-[.75rem] w-[380px] md:w-[528px] shadow-lg">
           <header className="flex items-center justify-between">
             <p className="text-[2rem] font-semibold">Sign up</p>
             <p className="text-[1.6rem] ">

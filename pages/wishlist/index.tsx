@@ -7,11 +7,16 @@ import { CartContext } from "../../context/CartContext";
 import { CartContextType } from "../../types/CartContextType";
 import { motion } from "framer-motion";
 import { container_variant } from "../../helpers/framer-motion";
+import { AuthContext } from "../../context/AuthContext";
+import { AuthContextType } from "../../types/AuthContextType";
+
 
 function Wishlist() {
+  const {currentUser}=useContext<AuthContextType>(AuthContext)
   const { wishListItems } = useContext<CartContextType>(CartContext);
 
 
+ 
   return (
     <>
       <header className="sticky top-0 h-fit z-20">

@@ -39,10 +39,10 @@ function Login() {
   return (
     <>
       <div className="w-[100vw] min-h-[100vh] bg-[#F9FAFB] grid place-content-center ">
-        <div className="bg-white p-[3rem] rounded-[.75rem] w-[428px] md:w-[528px] shadow-lg border-[1px] border-[#dbdbdb]">
+        <div className="bg-white p-[3rem] rounded-[.75rem] w-[380px] md:w-[528px] shadow-lg border-[1px] border-[#dbdbdb]">
           <header className="flex items-center justify-between">
             <p className="text-[2rem] font-semibold">Sign in</p>
-            <p className="text-[1.6rem] ">
+            <p className="text-2xl md:text-[1.6rem] ">
               Don&apos;t have an account?{" "}
               <Link className="font-semibold" href="/signup">
                 Join now

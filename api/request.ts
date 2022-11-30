@@ -3,7 +3,7 @@ import { Product } from "../types/Product";
 
 const SHOE_API_BASE_URL = "https://shoe-product-api-production.up.railway.app";
 
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "https://shoestore-backend.onrender.com/api";
 
 const headers = {
   headers: {
