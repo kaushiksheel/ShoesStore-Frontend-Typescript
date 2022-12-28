@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Product } from "../types/Product";
 
-const SHOE_API_BASE_URL = "https://shoe-product-api-production.up.railway.app";
+const SHOE_API_BASE_URL = "https://shoes-api.onrender.com";
 
 const BASE_URL = "https://shoestore-backend.onrender.com/api";
 
