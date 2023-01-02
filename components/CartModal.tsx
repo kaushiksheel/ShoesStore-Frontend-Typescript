@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { CartItem } from "./CartItem";
 import { CartContext } from "../context/CartContext";
@@ -11,11 +11,13 @@ import { AuthContext } from "../context/AuthContext";
 import { AuthContextType } from "../types/AuthContextType";
 import { Product } from "../types/Product";
 import {motion} from 'framer-motion'
+import { Spinner } from "./Spinner";
 
 export const CartModal = () => {
   const router = useRouter();
   const { currentUser } = useContext<AuthContextType>(AuthContext);
   const { cartItems } = useContext<CartContextType>(CartContext);
+  const[loading,setLoading]=useState<boolean>(false)
 
   const handleSidebar = () => {
     let cartModal = document.getElementById("cartModal");
@@ -35,9 +37,10 @@ export const CartModal = () => {
   };
 
   const handleCheckout = async () => {
-   
+   setLoading(true)
     const { data } = await checkout(cartItems, currentUser?.email as string);
     if (data) {
+      setLoading(false)
       router.push(data.url);
       cartItems?.map(async(item:Product)=>{
           await order(item.name,item.image,parseInt(item.price))
@@ -100,7 +103,8 @@ export const CartModal = () => {
               className="inline-block w-full bg-[#18181B] text-white text-2xl text-center p-8 font-bold rounded-lg hover:bg-[#282828]"
             disabled={cartItems.length<1}
             >
-              Checkout
+              {loading?<Spinner size={20} />:"Checkout"}
+              
             </motion.button>
             <motion.button
             whileTap={{ scale: 0.8 }} 
