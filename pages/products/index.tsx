@@ -19,7 +19,7 @@ function Home({ data }: Props) {
   const [rangeValue, setRangeValue] = useState<number>(122);
 
   const SearchResults = () => {
-    return data.filter((item) =>
+    return data?.filter((item) =>
       item.name.toLowerCase().includes(query.toLowerCase())
     );
   };
