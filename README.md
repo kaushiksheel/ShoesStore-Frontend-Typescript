@@ -16,4 +16,4 @@ A demo of the app can be found [here](https://shoes-store-frontend-typescript.ve
 
 
 
-![Shoe store Backend Respository](https://github.com/Devil5614737/shoeStore-Backend)
+[Shoe store Backend Respository](https://github.com/Devil5614737/shoeStore-Backend)
