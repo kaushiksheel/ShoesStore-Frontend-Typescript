@@ -12,29 +12,3 @@ A demo of the app can be found [here](https://shoes-store-frontend-typescript.ve
 
 ![Screenshot of Ecommerce App](https://portfolio-next-js-iota.vercel.app/_next/image?url=%2Fassets%2Fecommerce2.png&w=1920&q=75)
 
-## How to use
-
-To use the app, first ensure that you have Node.js and MongoDB installed on your system. Then, follow these steps:
-
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/ecommerce-app.git
-
-2. Navigate to the project directory:
-```bash
-cd ecommerce-app
-
-3. Install the dependencies
-```bash
-npm install
-
-4.Create a .env file in the root of the project and add the following environment variables:
-```bash
-MONGO_URI=<your-mongodb-uri>
-STRIPE_SECRET_KEY=<your-stripe-secret-key>
-
-5.Start the development server:
-```bash
-npm run dev
-
-The app should now be running on http://localhost:3000.
