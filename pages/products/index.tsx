@@ -29,7 +29,7 @@ function Home({ data }: Props) {
   };
 
 
- 
+
 
   return (
     <>
