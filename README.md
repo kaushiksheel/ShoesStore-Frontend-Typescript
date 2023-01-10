@@ -1,4 +1,4 @@
-# Shoe Store Eccomerce Applicaion
+# Shoe Store Ecommerce Applicaion
 
 ## Introduction
 
