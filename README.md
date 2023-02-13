@@ -16,4 +16,4 @@ Users can log in to the app and add items to their shopping cart. When they are 
 
 
 
-[Shoe store Backend Repository](https://github.com/Devil5614737/shoeStore-Backend)
+[Shoe store Backend Repository](https://github.com/kaushiksheel/shoeStore-Backend)
